@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta property="og:title" content="OMG-Avatar: One-shot Multi-LOD Gaussian Head Avatar">
+  <meta name="description"
+        content="Real-time animatable 3D head reconstruction from a single image using Multi-LOD Gaussian representation.">
+  <meta name="keywords" content="One-shot, Multi-LOD, Gaussian Head, 3D avatar, single-image reconstruction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OMG-Avatar: One-shot Multi-LOD Gaussian Avatar from a Single Image</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/logo.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">OMG-Avatar:</h1>
+                 <h1 class="title is-1 publication-title">One-shot Multi-LOD Gaussian Head Avatar</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://github.com/JianqiangRen">Jianqiang Ren</a>,</span>
+            <span class="author-block">
+              <a href="">Lin Liu</a>,</span>
+            <span class="author-block">
+              <a href="">Steven Hoi</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Tongyi Lab, Alibaba Group</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2603.01506"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2603.01506"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+    <!--           <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+      <!--         <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified" style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+          <p>
+            We propose OMG-Avatar, a novel <b>O</b>ne-shot method that leverages a <b>M</b>ulti-LOD (Level-of-Detail) 
+            <b>G</b>aussian representation for animatable 3D head reconstruction from a single image in 0.2s. 
+            Our method enables LOD head avatar modeling using a unified model that accommodates diverse
+            hardware capabilities and inference speed requirements. To capture both global and local 
+            facial characteristics, we employ a transformer-based architecture for global feature 
+            extraction and projection-based sampling for local feature acquisition. These features 
+            are effectively fused under the guidance of a depth buffer, ensuring occlusion plausibility.
+            We further introduce a coarse-to-fine learning paradigm to support Level-of-Detail functionality 
+            and enhance the perception of hierarchical details. To address the limitations of 3DMMs in 
+            modeling non-head regions such as the shoulders, we introduce a multi-region decomposition scheme
+            in which the head and shoulders are predicted separately and then integrated through cross-region 
+            combination. Extensive experiments demonstrate that OMG-Avatar outperforms state-of-the-art methods 
+            in reconstruction quality, reenactment performance, and computational efficiency.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <video id="teaser" controls muted loop playsinline preload="metadata"
+          style="width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto;">
+            <source src="./static/videos/OMGAvatar.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section pt-0 pb-0">
+  <div class="container is-max-desktop">
+    <!-- Framework -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Framework</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>The overall pipeline of OMG-Avatar framework.</strong> Our method extracts global features via cross-attention and local details
+            via projection-based sampling, which are fused under the guidance of depth buffers. A coarse-to-fine strategy is proposed to facilitate
+            hierarchical detail perception. The head and shoulder are predicted separately using shared features and then combined for rendering.
+          </p>
+        </div>
+
+        <div class="has-text-centered">
+          <img src="./static/images/framework.png"
+               class="interpolation-image"
+               alt="OMG-Avatar framework diagram."
+               style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0 pb-0">
+  <div class="container is-max-desktop">
+    <!-- Qualitative Evaluation -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Qualitative Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We compare our method against baseline approaches on the VFHQ and HDTF datasets, 
+            with qualitative results shown in the figure below. As can be seen from the figure, GPAvatar
+            suffers from inaccurate expression tracking and exhibits noticeable blurring in 
+            the neck region—a limitation also observed in GAGAvatar (see rows 4 and 5). Although
+            Real3DPortrait, Portrait4D, and Portrait4Dv2 achieve high visual fidelity, 
+            they introduce severe misalignment artifacts under certain poses, manifesting as 
+            prominent cracking near the neck and chin (row 1). Additionally, LAM exhibits unnatural 
+            shoulder tilting (rows 1 and 3) alongside noticeable artifacts around the mouth and
+            teeth (rows 2 and 6). In contrast, our method achieves superior visual quality compared 
+            to existing approaches while using significantly fewer Gaussian points. Notably, even
+            our low-resolution variant (Sub #1 with ∼29K Gaussian points), shown in the last column,
+            maintains comparable visual fidelity, making it particularly well-suited for
+            deployment in high-speed applications or on hardware with limited computational resources.
+          </p>
+        </div>
+
+        <div class="has-text-centered">
+          <img src="./static/images/cross-identity_reenactment_results.png"
+               class="interpolation-image"
+               alt="Qualitative comparison of OMG-Avatar against baselines on VFHQ and HDTF."
+               style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reenactment and multi-view results -->
+<section class="section pt-0 pb-0">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Multi-view Results</h2>
+        <div class="has-text-centered">
+          <img src="./static/images/more_novel_view.png"
+               class="interpolation-image"
+               alt="Reenactment and multi-view results."
+               style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Comparison with state-of-the-art methods -->
+<section class="section pt-0 pb-0">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Comparison with SOTA Methods</h2>
+        <div class="has-text-centered">
+          <img src="./static/images/cmp_sota.png"
+               class="interpolation-image"
+               alt="Comparison with state-of-the-art methods."
+               style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section pt-0 pb-0">
+  <div class="container is-max-desktop">
+    <!-- Quantitative Evaluation -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-five-sixths">
+        <h2 class="title is-3">Quantitative Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            As shown in the following Tab. 1 and Tab. 2, our method (Sub #2) outperforms existing approaches across
+            all reconstruction metrics (PSNR, SSIM, and LPIPS), as well as identity, expression, and pose consistency. Remarkably,
+            our low-resolution LOD Sub #1 surpasses LAM (80K Gaussians) and GAGAvatar (180K Gaussians) on both datasets using 
+            only 29K Gaussian points, demonstrating the effectiveness of our hierarchical feature extraction and fusion strategy. 
+            We further report the inference efficiency in Tab. 3. Our method achieves an inference speed of 85 FPS on an A100 GPU 
+            and 126 FPS on the consumer-grade RTX 4090 GPU, using the native PyTorch framework and the official implementation of 
+            3D Gaussian Splatting. Compared to existing neural-rendering-based methods, our approach attains the highest inference 
+            speed. Moreover, our method outperforms LAM (280 FPS on A100 GPU without neural rendering) in terms of geometric details 
+            and dynamic textures, achieving an optimal balance between efficiency and visual quality.
+          </p>
+        </div>
+
+        <div class="has-text-centered">
+          <img src="./static/images/table_1.png"
+               class="interpolation-image"
+               alt="Quantitative results: Table 1."
+               style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <div class="has-text-centered">
+          <img src="./static/images/table_2.png"
+               class="interpolation-image"
+               alt="Quantitative results: Table 2."
+               style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <div class="has-text-centered">
+          <img src="./static/images/table_3.png"
+               class="interpolation-image"
+               alt="Quantitative results: Table 3."
+               style="max-width: 100%; height: auto; border-radius: 8px;" />
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="section pt-0" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{ren2026omgavataroneshotmultilodgaussian,
+      title={OMG-Avatar: One-shot Multi-LOD Gaussian Head Avatar}, 
+      author={Jianqiang Ren and Lin Liu and Steven Hoi},
+      year={2026},
+      eprint={2603.01506},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2603.01506}, 
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. Website template adapted from: <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies project</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
